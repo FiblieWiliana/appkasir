@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data User</h1>
+                    <h1 class="m-0">Produk</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
@@ -13,7 +13,7 @@
                         <li class="breadcrumb-item">
                             <a href="#">Data Utama</a>
                         </li>
-                        <li class="breadcrumb-item active">Data User</li>
+                        <li class="breadcrumb-item active">Data Produk</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -34,40 +34,39 @@
                 <div class="card-body">
                     <table id="example1" class="table table-hover">
                         <thead class="bg-blue">
-                            <th>Id</th>
-                            <th>Nama</th>
-                            <th>Username</th>
-                            <th>Password</th>
-                            <th>Hak Akses</th>
+                            <th>Produk ID</th>
+                            <th>Nama Produk</th>
+                            <th>Harga</th>
+                            <th>Stok</th>
                             <th>Aksi</th>
                         </thead>
                         <?php
-             $sql="SELECT * FROM user"; //biar ga keliatan di web ny klo di hapus tp msi kesimpen di database
+             $sql="SELECT * FROM produk"; //biar ga keliatan di web ny klo di hapus tp msi kesimpen di database
              $query=mysqli_query($koneksi,$sql);
-             while ($kolom=mysqli_fetch_array($query)){     
+             while ($kolom=mysqli_fetch_array($query)){   
             ?>
-
+                
                         <tr>
-                            <td><?= $kolom ['id_user']; ?>
+                            <td><?= $kolom ['ProdukID']; ?>
                             </td>
-                            <td><?= $kolom ['nama']; ?>
+                            <td><?= $kolom ['NamaProduk']; ?>
                             </td>
-                            <td><?= $kolom ['username']; ?>
+                            <td><?= $kolom ['Harga']; ?>
                             </td>
-                            <td><?= $kolom ['password']; ?>
+                            <td><?= $kolom ['Stok']; ?>
                             </td>
-                            <td><?= $kolom ['hak_akses']; ?>
-                            </td>
+                            
                             <td>
+            
                                 <!-- tombol edit -->
-                                <a href="#" data-toggle="modal" data-target="#modalubah<?=$kolom['id_user'];?>">
+                                <a href="#" data-toggle="modal" data-target="#modalubah<?=$kolom['ProdukID'];?>">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 &nbsp;<!-- untuk jarak -->
                                 <!-- tombol hapus -->
                                 <a
                                     onclick="return confirm('yakin akan mengahpus data ini?')"
-                                    href="aksi/user.php?aksi=hapus&id_user=<?= $kolom['id_user']; ?> ">
+                                    href="aksi/produk.php?aksi=hapus&ProdukID=<?= $kolom['ProdukID']; ?> ">
                                     |
                                     <i class="fas fa-trash"></i>
                                 </a>
@@ -76,7 +75,7 @@
                         <!-- modal ubah periode -->
                         <div
                             class="modal fade"
-                            id="modalubah<?=$kolom['id_user'];?>"
+                            id="modalubah<?=$kolom['ProdukID'];?>"
                             tabindex="-1"
                             role="dialog"
                             aria-labelledby="exampleModalLabel"
@@ -84,59 +83,52 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Ubah user</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Ubah Produk</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="aksi/user.php" method="post">
+                                        <form action="aksi/produk.php" method="post">
                                             <input type="hidden" name="aksi" value="ubah">
-                                            <input type="hidden" name="id_user" value="<?=$kolom['id_user']; ?>">
+                                            <input type="hidden" name="ProdukID" value="<?=$kolom['ProdukID']; ?>">
 
-                                            <label for="id_user">Id User
+                                            <label for="ProdukID">Id Produk
                                             </label>
                                             <input
                                                 type="text"
-                                                name="id_user"
-                                                value="<?=$kolom['id_user'];?>"
+                                                name="ProdukID"
+                                                value="<?=$kolom['ProdukID'];?>"
                                                 class="form-control"
                                                 required="required">
 
-                                            <label for="nama">Nama
+                                            <label for="NamaProduk">Nama Produk
                                             </label>
                                             <input
                                                 type="text"
-                                                name="nama"
-                                                value="<?=$kolom['nama'];?>"
+                                                name="NamaProduk"
+                                                value="<?=$kolom['NamaProduk'];?>"
                                                 class="form-control"
                                                 required="required">
 
-                                            <label for="username">Username
+                                            <label for="Harga">Harga
                                             </label>
                                             <input
                                                 type="text"
-                                                name="username"
-                                                value="<?=$kolom['username'];?>"
+                                                name="Harga"
+                                                value="<?= number_format($kolom['Harga']);?>"
                                                 class="form-control"
                                                 required="required">
 
-                                            <label for="password">Password
+                                            <label for="Stok">Stok
                                             </label>
                                             <input
-                                                type="password"
-                                                name="password"
-                                                value="<?=$kolom['password'];?>"
+                                                type="text"
+                                                name="Stok"
+                                                value="<?=$kolom['Stok'];?>"
                                                 class="form-control"
                                                 required="required">
 
-                                            <label for="hak_akses">Hak Akses
-                                            </label>
-                                            <select class="form-control"  name="hak_akses" id="hak_akses">
-                                              <option value="<?=$kolom['hak_akses'];?>"><?=$kolom['hak_akses'];?></option>
-                                              <option value="1">1</option>
-                                               <option value="2">2</option>      
-                                            </select> 
 
                                             &nbsp;
                                             <button type="submit" class="btn bg-blue btn-block">
@@ -152,7 +144,7 @@
                                 </div>
                             </div>
                         </div>
-                        <?php  } ?>
+                        <?php } ?>
 
                     </table>
                     <button
@@ -161,7 +153,7 @@
                         data-toggle="modal"
                         data-target="#modaltambah">
                         <i class="fas fas-plus"></i>
-                        Tambah User Baru
+                        Tambah Produk Baru
                     </button>
                 </div>
             </div>
@@ -171,7 +163,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <!-- modal tambah user -->
+    <!-- modal tambah produk -->
     <div
         class="modal fade"
         id="modaltambah"
@@ -182,35 +174,30 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="aksi/user.php" method="post">
+                    <form action="aksi/produk.php" method="post">
                         <input type="hidden" name="aksi" value="tambah">
-                        <!-- <label for="id_user"> ID </label> <input type="text" name="id_user"
+                        <!-- <label for="ProdukID"> ID </label> <input type="text" name="ProdukID"
                         class="form-control" required="required"> -->
 
-                        <label for="nama">Nama user
+                        <label for="NamaProduk">NamaProduk
                         </label>
-                        <input type="text" name="nama" class="form-control" required="required">
+                        <input type="text" name="NamaProduk" class="form-control" required="required">
 
-                        <label for="username">username
+                        <label for="Harga">Harga
                         </label>
-                        <input type="text" name="username" class="form-control" required="required">
+                        <input type="text" name="Harga" class="form-control" required="required">
 
-                        <label for="password">password
+                        <label for="Stok">Stok
                         </label>
-                        <input type="text" name="password" class="form-control" required="required">
-                                <!-- contoh buat pilihan -->
-                        <label for="hak_akses">Hak Akses
-                        </label>
-                          <select class="form-control"  name="hak_akses" id="hak_akses">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                          </select>
+                        <input type="text" name="Stok" class="form-control" required="required">
+                        
+                        
                         &nbsp;
                         <button type="submit" class="btn bg-blue btn-block">
                             <i class="fas fa-save"></i>
@@ -225,3 +212,4 @@
             </div>
         </div>
     </div>
+</div>            
