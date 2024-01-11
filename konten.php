@@ -20,6 +20,10 @@ else if($_GET['p']=='pelanggan'){
     $konten="konten/pelanggan.php";
 }
 
+else if($_GET['p']=='tambah'){
+    $title="Tambah Penjualan Baru";
+    $konten="konten/tambah.php";
+}
 
 else if($_GET['p']=='laporan'){
     $title="Laporan Sistem";
@@ -34,10 +38,9 @@ else if($_GET['p']=='restore'){
     $konten="konten/restore.php";
 }
 
-//ahkir menu transaksi. (shift alt bawah buat copy cepat)
 
+// (shift alt bawah buat copy cepat)
 
-//ahkir menu untuk siswa
 
 else {
     $title="Halaman Tidak Ditemukan";

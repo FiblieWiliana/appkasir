@@ -35,6 +35,7 @@
                     <table id="example1" class="table table-hover">
                         <thead class="bg-blue">
                             <th>Produk ID</th>
+                            <th>Barcode</th>
                             <th>Nama Produk</th>
                             <th>Harga</th>
                             <th>Stok</th>
@@ -48,6 +49,8 @@
                 
                         <tr>
                             <td><?= $kolom ['ProdukID']; ?>
+                            </td>
+                            <td><?= $kolom ['Barcode']; ?>
                             </td>
                             <td><?= $kolom ['NamaProduk']; ?>
                             </td>
@@ -99,6 +102,15 @@
                                                 type="text"
                                                 name="ProdukID"
                                                 value="<?=$kolom['ProdukID'];?>"
+                                                class="form-control"
+                                                required="required">
+
+                                            <label for="Barcode">Barcode
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="Barcode"
+                                                value="<?=$kolom['Barcode'];?>"
                                                 class="form-control"
                                                 required="required">
 
@@ -184,8 +196,11 @@
                         <input type="hidden" name="aksi" value="tambah">
                         <!-- <label for="ProdukID"> ID </label> <input type="text" name="ProdukID"
                         class="form-control" required="required"> -->
+                        <label for="Barcode">Barcode
+                        </label>
+                        <input type="text" name="Barcode" class="form-control" required="required">
 
-                        <label for="NamaProduk">NamaProduk
+                        <label for="NamaProduk">Nama Produk
                         </label>
                         <input type="text" name="NamaProduk" class="form-control" required="required">
 

@@ -6,12 +6,13 @@ include "../function.php";
 
 if($_POST){
     if($_POST['aksi']=='tambah'){
+        $Barcode=$_POST['Barcode'];
         $NamaProduk=$_POST['NamaProduk'];
         $Harga=$_POST['Harga'];
         $Stok=$_POST['Stok'];
         
 
-        $sql="INSERT INTO produk (ProdukID,NamaProduk,Harga,Stok) VALUES(DEFAULT,'$NamaProduk','$Harga','$Stok')";
+        $sql="INSERT INTO produk (ProdukID,Barcode,NamaProduk,Harga,Stok) VALUES(DEFAULT,'$Barcode','$NamaProduk','$Harga','$Stok')";
 
         mysqli_query($koneksi,$sql);
 
@@ -19,12 +20,14 @@ if($_POST){
     }
     else if($_POST['aksi']=='ubah'){
         $ProdukID=$_POST['ProdukID'];
+        $Barcode=$_POST['Barcode'];
         $NamaProduk=$_POST['NamaProduk'];
         $Harga=$_POST['Harga'];
         $Stok=$_POST['Stok'];
         
+        
 
-        $sql="UPDATE produk SET NamaProduk='$NamaProduk',Harga='$Harga',Stok='$Stok' WHERE ProdukID=$ProdukID";
+        $sql="UPDATE produk SET Barcode='$Barcode', NamaProduk='$NamaProduk',Harga='$Harga',Stok='$Stok' WHERE ProdukID=$ProdukID";
 
         mysqli_query($koneksi,$sql);
 
