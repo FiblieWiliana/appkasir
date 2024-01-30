@@ -78,6 +78,11 @@ if($_POST){
                 $sql4="INSERT INTO detailpenjualan(DetailID,PenjualanID,ProdukID,JumlahProduk,Harga) values(default,$PenjualanID,$ProdukID,$Jumlah,$Harga)";
                 // echo $sql4."<br>";
                 mysqli_query($koneksi,$sql4);
+
+                // mengurangi nilai stok
+                $sql5="UPDATE produk SET Stok=Stok-$Jumlah WHERE ProdukID=$ProdukID";
+                mysqli_query($koneksi,$sql5);
+
                 notifikasi($koneksi);
                 header('location:../index.php?p=tambah');
             }

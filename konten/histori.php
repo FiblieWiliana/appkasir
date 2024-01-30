@@ -58,7 +58,7 @@
                             
                             <td>
                                 <!-- tombol print nota -->
-                                <a href="#"><i class="fas fa-print"></i></a> |
+                                <a href="pdf/output/nota_jual.php?PenjualanID=<?=$kolom['PenjualanID']; ?>" target="_blank"><i class="fas fa-print"></i></a> |
                                 <!-- tombol informasi -->
                                 <a href="index.php?p=infojual&PenjualanID=<?=$kolom['PenjualanID']; ?>"><i class="fas fa-search"></i></a> |
                                 <!-- tombol hapus-->
@@ -141,14 +141,9 @@
                         <?php } ?>
 
                     </table>
-                    <button
-                        type="button"
-                        class="btn bg-blue btn-block mt-3"
-                        data-toggle="modal"
-                        data-target="#modaltambah">
-                        <i class="fas fas-plus"></i>
-                        Tambah penjualan Baru
-                    </button>
+                    <a href="index.php?p=tambah">
+                        <button class="btn btn-info btn-block"><i class="fas fa-plus">Tambah Penjualan Baru</i></button>
+                    </a>
                 </div>
             </div>
             <!-- /.container-fluid -->
@@ -168,7 +163,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah penjualan</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah penjuala</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
